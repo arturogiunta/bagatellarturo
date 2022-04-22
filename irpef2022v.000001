@@ -1,0 +1,68 @@
+# calcolo irpef - molto grezzo e senza pretese 
+# non ci sono detrazioni
+# il calcolo viene ripetuto in più scenari perchè voglio confrontare diversi scenari
+# Versione 20220422
+separatore="-----"
+a1=float (input("RAL"))
+print(separatore)
+print(f"retribuzione lorda {int(a1)}")
+# Calcolo le ritenute sociali
+b=a1*0.0919
+print(f"INPS {int(b)}")
+c=a1-b
+print(f"IMPONIBILE IRPEF {c}")
+# VARIABILI PROMEMORIA  DEVO FARE CALCOLI A MANETTA NON MI SERVE DI AGGIORNARE IL CODICE L 'ANNO PROSSIMO
+soglia_irpef_1 = 8174 # NOTAX AREA
+soglia_irpef_2 = 15000 # PRIMO SCAGLIONE
+soglia_irpef_3 = 28000 # SECONDO SCAGLIONE
+soglia_irpef_4 = 50000 # ULTIMO SCAGLIONE
+sca_irpef1=3450
+sca_irpef2= sca_irpef1 + (28000-15000)*0.25
+sca_irpef3= sca_irpef2 + (50000-28000)*0.35
+##Calcolo l'IRPEF
+if c < 8174.01:
+    irpef = 0
+elif c < 15000:
+    irpef = c * 0.23
+elif c < 28000:
+    irpef = sca_irpef1 + (c-15000)*0.25
+elif c < 50000:
+    irpef = sca_irpef2 + (c-28000)*0.35
+else :
+    irpef = sca_irpef3 + (c-50000)*0.43
+    
+print(f"IRPEF {int(irpef)}")
+print(f"NETTO {int(a-b-irpef)}")
+# LAVORATORE IMPATRIATO SUD
+print(separatore)
+print ("LAVORATORE IMPATRIATO SUD")
+print(f"retribuzione lorda {a1}")
+# Calcolo le ritenute sociali
+b=a1*0.0919
+# print(f"INPS {b}")
+# imponibile IRPEF VARIABILI PROMEMORIA DEVO FARE CALCOLI A MANETTA NON MI SERVE DI AGGIORNARE IL CODICE L 'ANNO PROSSIMO
+c= 0.10* (a1-b)
+# print(f"IMPONIBILE IRPEF {c}")
+soglia_irpef_1 = 8174 # NOTAX AREA
+soglia_irpef_2 = 15000 # PRIMO SCAGLIONE
+soglia_irpef_3 = 28000
+soglia_irpef_4 = 50000
+sca_irpef1=3450
+sca_irpef2= sca_irpef1 + (28000-15000)*0.25
+sca_irpef3= sca_irpef2 + (50000-28000)*0.35
+##Calcolo l'IRPEF
+if c < 8174.01:
+    irpef = 0
+elif c < 15000:
+    irpef = c * 0.23
+elif c < 28000:
+    irpef = sca_irpef1 + (c-15000)*0.25
+elif c < 50000:
+    irpef = sca_irpef2 + (c-28000)*0.35
+else :
+    irpef = sca_irpef3 + (c - 50000)* 0.43
+    
+print(f"IRPEF {irpef}")
+print(f"NETTO {a-b-irpef}")
+print (separatore)
+print (separatore)
